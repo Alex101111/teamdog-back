@@ -6,24 +6,26 @@
     header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
     include_once '../config/database.php';
-    include_once '../class/employees.php';
+    include_once '../class/Dogs.php';
 
     $database = new Database();
     $db = $database->getConnection();
 
-    $item = new Employee($db);
+    $item = new Dogs($db);
 
     $data = json_decode(file_get_contents("php://input"));
 
-    $item->name = $data->name;
-    $item->email = $data->email;
-    $item->age = $data->age;
-    $item->designation = $data->designation;
-    $item->created = date('Y-m-d H:i:s');
+    $item->race = $data->race;
+    $item->type_de_poil = $data->type_de_poil;
+    $item->gabarit = $data->gabarit;
+    $item->origine = $data->origine;
+    $item->caractere = $data->caractere;
+    $item->photo = $data->photo;
+
     
-    if($item->createEmployee()){
-        echo 'Employee created successfully.';
+    if($item->createDogs()){
+        echo 'Dog created successfully.';
     } else{
-        echo 'Employee could not be created.';
+        echo 'Dog could not be created.';
     }
 ?>

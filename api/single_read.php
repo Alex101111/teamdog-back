@@ -6,26 +6,27 @@
     header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
     include_once '../config/database.php';
-    include_once '../class/employees.php';
+    include_once '../class/Dogs.php';
 
     $database = new Database();
     $db = $database->getConnection();
 
-    $item = new Employee($db);
+    $item = new Dogs($db);
 
-    $item->id = isset($_GET['id']) ? $_GET['id'] : die();
+    $item->id = isset($_GET['id_dog']) ? $_GET['id_dog'] : die();
   
-    $item->getSingleEmployee();
+    $item->getSingleDog();
 
     if($item->name != null){
         // create array
         $emp_arr = array(
-            "id" =>  $item->id,
-            "name" => $item->name,
-            "email" => $item->email,
-            "age" => $item->age,
-            "designation" => $item->designation,
-            "created" => $item->created
+            "id_dog" =>  $item->id_dog,
+            "race" => $item->race,
+            "type_de_poil" => $item->type_de_poil,
+            "gabarit" => $item->gabarit,
+            "origin" => $item->origine,
+            "caractere" => $item->caractere,
+            "photo" => $item->photo
         );
       
         http_response_code(200);
@@ -34,6 +35,6 @@
       
     else{
         http_response_code(404);
-        echo json_encode("Employee not found.");
+        echo json_encode("Dog not found.");
     }
 ?>

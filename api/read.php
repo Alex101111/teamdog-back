@@ -3,14 +3,14 @@
     header("Content-Type: application/json; charset=UTF-8");
     
     include_once '../config/database.php';
-    include_once '../class/employees.php';
+    include_once '../class/Dogs.php';
 
     $database = new Database();
     $db = $database->getConnection();
 
-    $items = new Employee($db);
+    $items = new Dogs($db);
 
-    $stmt = $items->getEmployees();
+    $stmt = $items->getDogs();
     $itemCount = $stmt->rowCount();
 
 
@@ -18,24 +18,26 @@
 
     if($itemCount > 0){
         
-        $employeeArr = array();
-        $employeeArr["body"] = array();
-        $employeeArr["itemCount"] = $itemCount;
+        $dogsAray = array();
+        $dogsAray["body"] = array();
+        $dogsAray["itemCount"] = $itemCount;
 
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
             extract($row);
             $e = array(
-                "id" => $id,
-                "name" => $name,
-                "email" => $email,
-                "age" => $age,
-                "designation" => $designation,
-                "created" => $created
+                "id_dog" => $id_dog,
+                "race" => $race,
+                "type_de_poil" => $type_de_poil,
+                "gabarit" => $gabarit,
+                "origin" => $origin,
+                "caractere" => $caractere,
+                "photo" => $photo
+
             );
 
-            array_push($employeeArr["body"], $e);
+            array_push($dogsAray["body"], $e);
         }
-        echo json_encode($employeeArr);
+        echo json_encode($dogsAray);
     }
 
     else{

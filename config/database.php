@@ -1,9 +1,9 @@
 <?php 
     class Database {
-        private $host = "127.0.0.1";
+        private $host = "localhost";
         private $database_name = "phpapidb";
         private $username = "root";
-        private $password = "eP#A2PMsY^a4";
+        private $password = "";
 
         public $conn;
 

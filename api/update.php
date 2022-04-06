@@ -6,25 +6,27 @@
     header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
     
     include_once '../config/database.php';
-    include_once '../class/employees.php';
+    include_once '../class/Dogs.php';
     
     $database = new Database();
     $db = $database->getConnection();
     
-    $item = new Employee($db);
+    $item = new Dogs($db);
     
     $data = json_decode(file_get_contents("php://input"));
     
-    $item->id = $data->id;
+    $item->id_dog = $data->id_dog;
     
     // employee values
-    $item->name = $data->name;
-    $item->email = $data->email;
-    $item->age = $data->age;
-    $item->designation = $data->designation;
-    $item->created = date('Y-m-d H:i:s');
+    $item->race = $data->race;
+    $item->type_de_poil = $data->type_de_poil;
+    $item->gabarit = $data->gabarit;
+    $item->origine = $data->origine;
+    $item->caractere = $data->caractere;
+    $item->photo = $data->photo;
+
     
-    if($item->updateEmployee()){
+    if($item->updateDogs()){
         echo json_encode("Employee data updated.");
     } else{
         echo json_encode("Data could not be updated");
