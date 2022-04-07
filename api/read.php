@@ -14,13 +14,13 @@
     $itemCount = $stmt->rowCount();
 
 
-    echo json_encode($itemCount);
+ //   echo json_encode($itemCount);
 
     if($itemCount > 0){
         
         $dogsAray = array();
-        $dogsAray["body"] = array();
-        $dogsAray["itemCount"] = $itemCount;
+       
+     
 
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
             extract($row);
@@ -29,13 +29,13 @@
                 "race" => $race,
                 "type_de_poil" => $type_de_poil,
                 "gabarit" => $gabarit,
-                "origin" => $origin,
+                "origine" => $origine,
                 "caractere" => $caractere,
                 "photo" => $photo
 
             );
 
-            array_push($dogsAray["body"], $e);
+            array_push($dogsAray, $e);
         }
         echo json_encode($dogsAray);
     }
