@@ -12,10 +12,9 @@
     $db = $database->getConnection();
     
     $item = new Dogs($db);
+
     
-    $data = json_decode(file_get_contents("php://input"));
-    
-    $item->id_dog = $data->id_dog;
+    $item->id_dog =  isset($_GET['id_dog']) ? $_GET['id_dog'] : die();
     
     if($item->deleteDog()){
         echo json_encode("Dog deleted.");
