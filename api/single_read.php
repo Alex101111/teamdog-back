@@ -25,7 +25,7 @@
             "race" => $item->race,
             "type_de_poil" => $item->type_de_poil,
             "gabarit" => $item->gabarit,
-            "origin" => $item->origine,
+            "origine" => $item->origine,
             "caractere" => $item->caractere,
             "photo" => $item->photo
         );
