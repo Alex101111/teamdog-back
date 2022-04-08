@@ -1,3 +1,4 @@
+
 <?php
     header("Access-Control-Allow-Origin: *");
     header("Content-Type: application/json; charset=UTF-8");
@@ -13,11 +14,11 @@
 
     $item = new Dogs($db);
 
-    $item->id = isset($_GET['id_dog']) ? $_GET['id_dog'] : die();
-  
+    $item->id_dog = isset($_GET['id_dog']) ? $_GET['id_dog'] : die();
+
     $item->getSingleDog();
 
-    if($item->name != null){
+    if($item->race != null){
         // create array
         $emp_arr = array(
             "id_dog" =>  $item->id_dog,
@@ -38,3 +39,5 @@
         echo json_encode("Dog not found.");
     }
 ?>
+
+  

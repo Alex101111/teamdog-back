@@ -70,34 +70,34 @@
         // UPDATE
         public function getSingleDog(){
             $sqlQuery = "SELECT
-                        id_dog, 
-                        race, 
-                        type_de_poil, 
-                        gabarit, 
-                        origine, 
-                        caractere,
-                        photo
-                      FROM
-                        ". $this->db_table ."
-                    WHERE 
-                    id_dog = ?
-                    LIMIT 0,1";
+            id_dog, 
+            race, 
+            type_de_poil, 
+            gabarit, 
+            origine, 
+            caractere,
+            photo
+          FROM
+            ". $this->db_table ."
+        WHERE 
+        id_dog = :id_dog 
+        LIMIT 0,1";
 
-            $stmt = $this->conn->prepare($sqlQuery);
+$stmt = $this->conn->prepare($sqlQuery);
 
-            $stmt->bindParam(1, $this->id_dog);
+$stmt->bindParam(':id_dog', $this->id_dog);
 
-            $stmt->execute();
+$stmt->execute();
 
-            $dataRow = $stmt->fetch(PDO::FETCH_ASSOC);
-            
-            $this->race = $dataRow['race'];
-            $this->type_de_poil = $dataRow['type_de_poil'];
-            $this->gabarit = $dataRow['gabarit'];
-            $this->origine = $dataRow['origine'];
-            $this->caractere = $dataRow['caractere'];
-            $this->photo = $dataRow['photo'];
-        }        
+$dataRow = $stmt->fetch(PDO::FETCH_ASSOC);
+
+$this->race = $dataRow['race'];
+$this->type_de_poil = $dataRow['type_de_poil'];
+$this->gabarit = $dataRow['gabarit'];
+$this->origine = $dataRow['origine'];
+$this->caractere = $dataRow['caractere'];
+$this->photo = $dataRow['photo'];
+}          
 
         // UPDATE
         public function updateDogs(){
