@@ -13,8 +13,9 @@
     
     $item = new Dogs($db);
 
-    
-    $item->id_dog =  isset($_GET['id_dog']) ? $_GET['id_dog'] : die();
+    $data = json_decode(file_get_contents("php://input"));
+
+    $item->id_dog = $data->id_dog;
     
     if($item->deleteDog()){
         echo json_encode("Dog deleted.");

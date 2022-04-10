@@ -70,34 +70,34 @@
         // UPDATE
         public function getSingleDog(){
             $sqlQuery = "SELECT
-            id_dog, 
-            race, 
-            type_de_poil, 
-            gabarit, 
-            origine, 
-            caractere,
-            photo
-          FROM
-            ". $this->db_table ."
-        WHERE 
-        id_dog = :id_dog 
-        LIMIT 0,1";
+                        id_dog, 
+                        race, 
+                        type_de_poil, 
+                        gabarit, 
+                        origine, 
+                        caractere,
+                        photo
+                      FROM
+                        ". $this->db_table ."
+                    WHERE 
+                    id_dog =:id_dog ";
 
-$stmt = $this->conn->prepare($sqlQuery);
+            $stmt = $this->conn->prepare($sqlQuery);
 
-$stmt->bindParam(':id_dog', $this->id_dog);
+            $stmt->bindParam(":id_dog", $this->id_dog);
 
-$stmt->execute();
-
-$dataRow = $stmt->fetch(PDO::FETCH_ASSOC);
-
-$this->race = $dataRow['race'];
-$this->type_de_poil = $dataRow['type_de_poil'];
-$this->gabarit = $dataRow['gabarit'];
-$this->origine = $dataRow['origine'];
-$this->caractere = $dataRow['caractere'];
-$this->photo = $dataRow['photo'];
-}          
+            $stmt->execute();
+            
+            $dataRow = $stmt->fetch(PDO::FETCH_ASSOC);
+            $this->id_dog = $dataRow['id_dog'];
+            $this->race = $dataRow['race'];
+            $this->type_de_poil = $dataRow['type_de_poil'];
+            $this->gabarit = $dataRow['gabarit'];
+            $this->origine = $dataRow['origine'];
+            $this->caractere = $dataRow['caractere'];
+            $this->photo = $dataRow['photo'];
+            return $dataRow;
+        }        
 
         // UPDATE
         public function updateDogs(){
@@ -121,7 +121,7 @@ $this->photo = $dataRow['photo'];
             $this->origine=htmlspecialchars(strip_tags($this->origine));
             $this->caractere=htmlspecialchars(strip_tags($this->caractere));
             $this->photo=htmlspecialchars(strip_tags($this->photo));
-            $this->id_dog=htmlspecialchars(strip_tags($this->id_dog));
+          
         
             // bind data
             $stmt->bindParam(":race", $this->race);
